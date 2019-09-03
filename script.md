@@ -38,7 +38,7 @@
 
 ## urlopen()
 
-``` 
+``` python
 import urllib.request
 rep = urllib.request.rulopen('http://www.python.org')
 print(rep.read().decode('utf-8'))
@@ -48,7 +48,7 @@ print(type(rep))
 
 ## parse url
 
-```
+```python
 urlparse	url的识别和分段
 urllib.parese.urlparse(urlstring, scheme='', allow_fragments=True)
 
@@ -66,12 +66,12 @@ unquote
 
 ### request
 
-```
-r = requests.post(' http://httpbin.org/post ’)
-r = requests.put('http : //httpbi 「i. org/put ’)
-r = requests .delete( ' http://httpbin.org/delete ' )
-r = requests .head(’ http://httpbin .org/get ’)
-r = requests.options(’ http://httpbin.org/get')
+```python
+r = requests.post('http://httpbin.org/post')
+r = requests.put('http : //httpbi 「i. org/put')
+r = requests .delete('http://httpbin.org/delete')
+r = requests .head('http://httpbin .org/get')
+r = requests.options('http://httpbin.org/get')
 
 import requests
 r = request.get('http://www.jianshu.com')
@@ -81,4 +81,93 @@ exit() if not r.status_code == request.codes.ok else print('Request Successfully
 
 r = requests . post(” http ://httpbin .org/post”, files=files)
 ```
+
+
+# install
+1. request
++ ` pip3 install request ` or ` pip3 install requests-2 .17.3-py2.py3-none-any.whl `
+
+    git clone git://github .com/kennethreitz/requests.git ` or curl -OL https://github.com/kennethreitz/requests/tarball/master `
+    cd requests
+    python3 setup.py install
+2. selenium
+3. lxml     解析库
+4. baautifulsoup4
+5. pyquery
+6. pyspider
+7. pyOpenSSL
+8. pyWin32
+9. Scrapy
+
+```python
+import requests 
+r = requests.get("http://httpbin.org/get") 
+print(type(r.text)) 
+print(r.json()) 
+print(type(r.json()))
+```
+网页的返回类型实际上是 str 类型，但是它很特殊，是 JSON 格式的 所以，如果想直接
+解析返回结果，得到一个字典格式的话，可以直接调用 json()方法,如果返回结果不是 JSON
+式，便会出现解析错误，抛出 json.dec er. JSQ\JOecodeError 异常
+
+
+# lib description
+## urllib
+1.
+```python
+import urllib.request
+resp = urllib.request.urlopen('https://www.python.org')
+print(resp.read().decode('utf-8'))
+print(type(resp))
+<class 'http.client.HTTPResponse'>
+print(resp.status)
+print(resp.getheaders())
+print(resp.getheader('Server'))
+```
+
+2. test date parameter
+```python
+import urllib.parse
+import urllib.request
+
+data = bytes(urllib.parse.urlencode({'word': 'hello'}. encoding='utf8'))
+resp = urllib.request.urlopen('http://httpbin.org/post', data=data)
+print(resp.read())
+```
+
+3. Request
+```python
+from urllib import request, parse
+
+date = bytes(parse.urlencode(dict), encoding='utf8')
+req = request.Request(url=url, data=data, headers=headers, method='POST')
+resp = request.urlopen(req)
+print(resp.read().decode('utf-8'))
+```
+
+## requests
+1. get
+```python
+import requests
+
+r = request.get('http://httpbin.org/get')
+print(r.text)
+```
+
+```python
+import requests
+r = request.get('https:/www.zhihu.com/explore', headers=headers)
+
+print(r.text)
+with open('favicon.ico', 'wb') as f:
+    f.write(r.content)
+print(r.content)
+
+## pyquery
+1. 
+```
+from pyquery import PyQuery as pq
+import requests
+doc = pq(requests.get('https://cuiqingcai.com').text)
+print(doc('title'))
 
